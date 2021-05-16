@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="User NopCommerce">
+  <test name="run on firefox">
+    <classes>
+      <class name="com.nopcommerce.user.User_01_Register_Login"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
