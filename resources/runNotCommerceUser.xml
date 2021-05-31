@@ -2,7 +2,9 @@
 <suite parallel="false" name="User NopCommerce">
   <test name="run on firefox">
     <classes>
-      <class name="com.nopcommerce.user.Level_01_Register_Login_Repeat_Yourself"/>
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I"/>
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II"/>
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

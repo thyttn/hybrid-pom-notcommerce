@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-16T06:37:55Z" name="User NopCommerce" finished-at="2021-05-16T06:37:55Z" duration-ms="33">
+  <suite started-at="2021-05-31T12:52:39Z" name="User NopCommerce" finished-at="2021-05-31T12:53:51Z" duration-ms="71410">
     <groups>
     </groups>
-    <test started-at="2021-05-16T06:37:55Z" name="run on firefox" finished-at="2021-05-16T06:37:55Z" duration-ms="33">
-      <class name="com.nopcommerce.user.User_01_Register_Login">
-        <test-method signature="TC_01_Register_Empty_Data()[pri:0, instance:com.nopcommerce.user.User_01_Register_Login@9d5509a]" started-at="2021-05-16T06:37:55Z" name="TC_01_Register_Empty_Data" finished-at="2021-05-16T06:37:55Z" duration-ms="10" status="PASS">
+    <test started-at="2021-05-31T12:52:39Z" name="run on firefox" finished-at="2021-05-31T12:53:51Z" duration-ms="71410">
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II">
+        <test-method signature="TC_01_Register()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II@65d09a04]" started-at="2021-05-31T12:53:25Z" name="TC_01_Register" finished-at="2021-05-31T12:53:32Z" duration-ms="7323" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_01_Register_Empty_Data -->
-      </class> <!-- com.nopcommerce.user.User_01_Register_Login -->
+        </test-method> <!-- TC_01_Register -->
+        <test-method signature="TC_02_Login()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II@65d09a04]" started-at="2021-05-31T12:53:32Z" name="TC_02_Login" finished-at="2021-05-31T12:53:35Z" duration-ms="2704" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_02_Login -->
+        <test-method signature="TC_03_MyAccount()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II@65d09a04]" started-at="2021-05-31T12:53:35Z" name="TC_03_MyAccount" finished-at="2021-05-31T12:53:36Z" duration-ms="1282" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_03_MyAccount -->
+      </class> <!-- com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II -->
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III">
+        <test-method signature="TC_01_Register()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III@33c911a1]" started-at="2021-05-31T12:53:36Z" name="TC_01_Register" finished-at="2021-05-31T12:53:42Z" duration-ms="5947" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_01_Register -->
+        <test-method signature="TC_02_Login()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III@33c911a1]" started-at="2021-05-31T12:53:42Z" name="TC_02_Login" finished-at="2021-05-31T12:53:45Z" duration-ms="2652" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_02_Login -->
+        <test-method signature="TC_03_MyAccount()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III@33c911a1]" started-at="2021-05-31T12:53:45Z" name="TC_03_MyAccount" finished-at="2021-05-31T12:53:46Z" duration-ms="1311" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_03_MyAccount -->
+      </class> <!-- com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III -->
+      <class name="com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I@5aebe890]" started-at="2021-05-31T12:52:39Z" name="beforeTest" finished-at="2021-05-31T12:52:50Z" duration-ms="10862" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II@65d09a04]" started-at="2021-05-31T12:52:50Z" name="beforeTest" finished-at="2021-05-31T12:53:01Z" duration-ms="11254" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III@33c911a1]" started-at="2021-05-31T12:53:01Z" name="beforeTest" finished-at="2021-05-31T12:53:14Z" duration-ms="12300" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method signature="TC_01_Register()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I@5aebe890]" started-at="2021-05-31T12:53:14Z" name="TC_01_Register" finished-at="2021-05-31T12:53:21Z" duration-ms="7455" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_01_Register -->
+        <test-method signature="TC_02_Login()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I@5aebe890]" started-at="2021-05-31T12:53:21Z" name="TC_02_Login" finished-at="2021-05-31T12:53:23Z" duration-ms="2130" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_02_Login -->
+        <test-method signature="TC_03_MyAccount()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I@5aebe890]" started-at="2021-05-31T12:53:23Z" name="TC_03_MyAccount" finished-at="2021-05-31T12:53:25Z" duration-ms="1436" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_03_MyAccount -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I@5aebe890]" started-at="2021-05-31T12:53:46Z" name="afterTest" finished-at="2021-05-31T12:53:47Z" duration-ms="1275" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_II@65d09a04]" started-at="2021-05-31T12:53:47Z" name="afterTest" finished-at="2021-05-31T12:53:49Z" duration-ms="1817" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.nopcommerce.user.Level_02_Register_Login_DRY_Part_III@33c911a1]" started-at="2021-05-31T12:53:49Z" name="afterTest" finished-at="2021-05-31T12:53:51Z" duration-ms="1590" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.nopcommerce.user.Level_02_Register_Login_DRY_Part_I -->
     </test> <!-- run on firefox -->
   </suite> <!-- User NopCommerce -->
 </testng-results>
