@@ -40,11 +40,11 @@ public  class BasePage {
 	}
 
 	public void getForwardPage(WebDriver driver) {
-		driver.navigate().back();
+		driver.navigate().forward();
 	}
 
 	public void getRefreshPage(WebDriver driver) {
-		driver.navigate().back();
+		driver.navigate().refresh();
 	}
 
 	public Alert waitAlertPresence(WebDriver driver) {
@@ -108,10 +108,16 @@ public  class BasePage {
 		}
 	}
 
-	public By getByXpath(String locator) {
-		return By.xpath(locator);
+	public By getByXpath(String locator, String... values) {
+		return By.xpath(castRestparameter(locator, values));
 	}
-	public WebElement getFindElement(WebDriver driver,String locator) {
+	public By getByXpath(String locator) {
+		return By.xpath(castRestparameter(locator));
+	}
+	public WebElement getFindElement(WebDriver driver, String locator, String... values) {
+		return driver.findElement(getByXpath(castRestparameter(locator, values)));
+	}
+	public WebElement getFindElement(WebDriver driver, String locator) {
 		return driver.findElement(getByXpath(locator));
 	}
 	
@@ -120,20 +126,27 @@ public  class BasePage {
 	}
 
 	public void clickToElement(WebDriver driver,String locator) {
-		getFindElement(driver, locator).click();
+		getFindElement(driver, locator ).click();
+	}
+	public void clickToElement(WebDriver driver,String locator, String... values) {
+		getFindElement(driver, castRestparameter(locator, values)).click();
 	}
 	public void sendKeyToElement(WebDriver driver,String locator, String valueSenkey) {
-		getFindElement(driver, locator).clear();
-		getFindElement(driver, locator).sendKeys(valueSenkey);
+		getFindElement(driver,locator ).clear();
+		getFindElement(driver,locator ).sendKeys(valueSenkey);
+	}
+	public void sendKeyToElement(WebDriver driver,String locator,String valueSenkey, String... expectedValues ) {
+		getFindElement(driver, castRestparameter(locator, expectedValues)).clear();
+		getFindElement(driver, castRestparameter(locator, expectedValues)).sendKeys(valueSenkey);
 	}
 	
-	public void selectItemInDropdown(WebDriver driver,String locator,String textValue) {
-		select = new Select(getFindElement(driver, locator));
+	public void selectItemInDropdown(WebDriver driver,String locator,String textValue, String...expectedValues ) {
+		select = new Select(getFindElement(driver, castRestparameter(locator, expectedValues)));
 		select.selectByVisibleText(textValue);
 	}
 	
-	public String getSelectItemInDropdown(WebDriver driver,String locator) {
-		select = new Select(getFindElement(driver, locator));
+	public String getSelectItemInDropdown(WebDriver driver,String locator, String...expectedValues) {
+		select = new Select(getFindElement(driver, castRestparameter(locator, expectedValues)));
 		return select.getFirstSelectedOption().getText();
 	}
 	
@@ -170,8 +183,11 @@ public  class BasePage {
 		}
 	}
 	
-	public String getAttributeValue(WebDriver driver,String locator, String attributeName) {
-		return getFindElement(driver, locator).getAttribute(attributeName);
+	public String getAttributeValue(WebDriver driver,String locator, String attributeName, String...expectedValues) {
+		return getFindElement(driver, castRestparameter(locator, expectedValues)).getAttribute(attributeName);
+	}
+	public String getTextValue(WebDriver driver,String locator, String...expectedVales) {
+		return getFindElement(driver, castRestparameter(locator, expectedVales)).getText();
 	}
 	
 	public String getCssValue(WebDriver driver,String locator, String attributeName) {
@@ -200,6 +216,9 @@ public  class BasePage {
 	
 	public boolean isElementDisplay(WebDriver driver,String locator) {
 		return getFindElement(driver, locator).isDisplayed();
+	}
+	public boolean isElementDisplay(WebDriver driver,String locator,String...values) {
+		return getFindElement(driver, castRestparameter(locator, values)).isDisplayed();
 	}
 	public boolean isElementSelected(WebDriver driver,String locator) {
 		return getFindElement(driver, locator).isSelected();
@@ -236,6 +255,11 @@ public  class BasePage {
 	public void pressKeyToElement(WebDriver driver,String locator, Keys key) {
 		action = new Actions(driver);
 		action.sendKeys(getFindElement(driver, locator), key).perform();
+		//key  = Keys.TAB...
+	}
+	public void pressKeyToElement(WebDriver driver,String locator, Keys key,String...values) {
+		action = new Actions(driver);
+		action.sendKeys(getFindElement(driver, locator, values), key).perform();
 		//key  = Keys.TAB...
 	}
 	
@@ -334,13 +358,21 @@ public  class BasePage {
 		}
 	}
 
-	public void waitForElementVisible(WebDriver driver, String locator) {
+	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator, values)));
+	}
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator, values)));
 	}
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	public void waitForElementInvisible(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	public void waitForElementInvisible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
@@ -349,6 +381,11 @@ public  class BasePage {
 	public void waitForAlertPresence(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.alertIsPresent());
+	}
+	
+	public String castRestparameter(String locator, String... values) {
+		locator = String.format(locator, (Object[]) values);
+		return locator;
 	}
 	
 	private Actions action;

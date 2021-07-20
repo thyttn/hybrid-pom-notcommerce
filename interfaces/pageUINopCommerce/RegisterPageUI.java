@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUINopCommerce;
 
 public class RegisterPageUI {
 	public  final static String GENDER_LOCATOR = "//input[@id='gender-male']";

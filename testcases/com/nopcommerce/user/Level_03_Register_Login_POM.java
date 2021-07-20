@@ -15,7 +15,7 @@ import commons.BasePage;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
-import pageUIs.HomePageUI;
+import pageUINopCommerce.HomePageUI;
 
 
 public class Level_03_Register_Login_POM{
@@ -58,6 +58,9 @@ public class Level_03_Register_Login_POM{
 		loginPage.enterToEmailTextbox(email);
 		loginPage.enterToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
+		
+		homePage = new HomePageObject(driver);
+		Assert.assertTrue(homePage.isHomePageSlider());
 	}
 
 	@AfterTest

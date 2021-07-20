@@ -3,8 +3,8 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.LoginPageUI;
-import pageUIs.RegisterPageUI;
+import pageUINopCommerce.LoginPageUI;
+import pageUINopCommerce.RegisterPageUI;
 
 public class LoginPageObject extends BasePage{
 	private WebDriver driver;

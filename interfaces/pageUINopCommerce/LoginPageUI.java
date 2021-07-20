@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUINopCommerce;
 
 public class LoginPageUI {
 	public  final static String EMAIL_LOCATOR = "//input[@id='Email']";

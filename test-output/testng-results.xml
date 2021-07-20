@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-06-06T00:11:09Z" name="User NopCommerce" finished-at="2021-06-06T00:11:28Z" duration-ms="19606">
+  <suite started-at="2021-07-20T11:20:45Z" name="Jquery datatable" finished-at="2021-07-20T11:21:22Z" duration-ms="37246">
     <groups>
     </groups>
-    <test started-at="2021-06-06T00:11:09Z" name="run on firefox" finished-at="2021-06-06T00:11:28Z" duration-ms="19606">
-      <class name="com.nopcommerce.user.Level_03_Register_Login_POM">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:com.nopcommerce.user.Level_03_Register_Login_POM@1ce24091]" started-at="2021-06-06T00:11:09Z" name="beforeTest" finished-at="2021-06-06T00:11:17Z" duration-ms="8268" status="PASS">
+    <test started-at="2021-07-20T11:20:45Z" name="run on firefox" finished-at="2021-07-20T11:21:22Z" duration-ms="37246">
+      <class name="com.jquery.Level_09_DataTable">
+        <test-method is-config="true" signature="beforeTest(java.lang.String, java.lang.String)[pri:0, instance:com.jquery.Level_09_DataTable@63475ace]" started-at="2021-07-20T11:20:45Z" name="beforeTest" finished-at="2021-07-20T11:21:00Z" duration-ms="15593" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="TC_01_Register()[pri:0, instance:com.nopcommerce.user.Level_03_Register_Login_POM@1ce24091]" started-at="2021-06-06T00:11:17Z" name="TC_01_Register" finished-at="2021-06-06T00:11:23Z" duration-ms="6048" status="PASS">
+        <test-method signature="TC_01_Paging()[pri:0, instance:com.jquery.Level_09_DataTable@63475ace]" started-at="2021-07-20T11:21:00Z" name="TC_01_Paging" finished-at="2021-07-20T11:21:02Z" duration-ms="2038" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_01_Register -->
-        <test-method signature="TC_02_Login()[pri:0, instance:com.nopcommerce.user.Level_03_Register_Login_POM@1ce24091]" started-at="2021-06-06T00:11:23Z" name="TC_02_Login" finished-at="2021-06-06T00:11:27Z" duration-ms="3597" status="PASS">
+        </test-method> <!-- TC_01_Paging -->
+        <test-method signature="TC_02_Search_In_Table()[pri:0, instance:com.jquery.Level_09_DataTable@63475ace]" started-at="2021-07-20T11:21:02Z" name="TC_02_Search_In_Table" finished-at="2021-07-20T11:21:07Z" duration-ms="4318" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_02_Login -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.nopcommerce.user.Level_03_Register_Login_POM@1ce24091]" started-at="2021-06-06T00:11:27Z" name="afterTest" finished-at="2021-06-06T00:11:28Z" duration-ms="1653" status="PASS">
+        </test-method> <!-- TC_02_Search_In_Table -->
+        <test-method signature="TC_03_Edit_Remove_Row()[pri:0, instance:com.jquery.Level_09_DataTable@63475ace]" started-at="2021-07-20T11:21:07Z" name="TC_03_Edit_Remove_Row" finished-at="2021-07-20T11:21:20Z" duration-ms="13380" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_03_Edit_Remove_Row -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.jquery.Level_09_DataTable@63475ace]" started-at="2021-07-20T11:21:20Z" name="afterTest" finished-at="2021-07-20T11:21:22Z" duration-ms="1877" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-      </class> <!-- com.nopcommerce.user.Level_03_Register_Login_POM -->
+      </class> <!-- com.jquery.Level_09_DataTable -->
     </test> <!-- run on firefox -->
-  </suite> <!-- User NopCommerce -->
+  </suite> <!-- Jquery datatable -->
 </testng-results>

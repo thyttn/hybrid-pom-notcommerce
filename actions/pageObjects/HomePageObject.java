@@ -3,7 +3,7 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.HomePageUI;
+import pageUINopCommerce.HomePageUI;
 
 public class HomePageObject extends BasePage{
 	private WebDriver driver;
@@ -17,5 +17,9 @@ public class HomePageObject extends BasePage{
 	public void clickToLoginLink() {
 		waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
+	}
+	public boolean isHomePageSlider() {
+		waitForElementVisible(driver, HomePageUI.HOME_PAGE_LOGO);
+		return isElementDisplay(driver, HomePageUI.HOME_PAGE_LOGO);
 	}
 }

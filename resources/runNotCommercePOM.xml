@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite parallel="false" name="User NopCommerce">
-  <test name="run on firefox">
-    <classes>
-      <class name="com.nopcommerce.user.Level_03_Register_Login_POM"/>
-    </classes>
-  </test> <!-- Test -->
+  <parameter name="url" value="https://demo.nopcommerce.com/" />
+	<test name="run on firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.nopcommerce.user.Level_08_Register_Login_Dynamic_Locator" />
+		</classes>
+	</test> <!-- Test -->
+
+	
 </suite> <!-- Suite -->

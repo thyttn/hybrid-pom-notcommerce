@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import commons.BasePage;
-import pageUIs.RegisterPageUI;
+import pageUINopCommerce.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {
 	private WebDriver driver;
