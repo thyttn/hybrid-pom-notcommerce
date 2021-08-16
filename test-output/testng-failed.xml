@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Jquery datatable]">
-  <parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/"/>
-  <test thread-count="5" name="run on firefox(failed)">
+<suite thread-count="2" parallel="tests" name="Failed suite [User NopCommerce]">
+  <parameter name="url" value="https://demo.nopcommerce.com/"/>
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    <listener class-name="commons.MethodListener"/>
+    <listener class-name="extentV3Config.ExtentTestListener"/>
+    <listener class-name="reportConfig.ReportNGListener"/>
+  </listeners>
+  <test thread-count="2" parallel="tests" name="run on firefox(failed)">
     <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.jquery.Level_09_DataTable">
+      <class name="takeScreenshot.Level_16_Register_Login_Screenshot_ExtentReportV2">
         <methods>
-          <include name="afterTest"/>
           <include name="beforeTest"/>
-          <include name="TC_03_Edit_Remove_Row"/>
+          <include name="TC_01_Register" invocation-numbers="0"/>
+          <include name="deleteAllFilesInReportNGScreenshot"/>
+          <include name="afterTest"/>
         </methods>
-      </class> <!-- com.jquery.Level_09_DataTable -->
+      </class> <!-- takeScreenshot.Level_16_Register_Login_Screenshot_ExtentReportV2 -->
     </classes>
   </test> <!-- run on firefox(failed) -->
-</suite> <!-- Failed suite [Jquery datatable] -->
+</suite> <!-- Failed suite [User NopCommerce] -->

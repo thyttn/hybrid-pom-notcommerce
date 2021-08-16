@@ -21,7 +21,7 @@ import generatorManager.HomePageObject;
 import generatorManager.LoginPageObject;
 import generatorManager.RegisterPageObject;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import pageObjectLiveGuru.MyAccountPageObject;
+import pageObjectLiveGuru.UserRegisterPageObject;
 import pageUINopCommerce.HomePageUI;
 
 

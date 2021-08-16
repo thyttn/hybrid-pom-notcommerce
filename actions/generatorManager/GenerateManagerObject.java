@@ -16,45 +16,45 @@ public class GenerateManagerObject {
 	}
 	
 	public static HomePageObject getHomePage(WebDriver driver) {
-		if(homePage == null) {
+//		if(homePage == null) {
+//			return new HomePageObject(driver);
+//		}
 			return new HomePageObject(driver);
-		}
-			return homePage;
 	}
 	public static LoginPageObject getLoginPage(WebDriver driver) {
-		if(loginPage == null) {
+//		if(loginPage == null) {
+//			return new LoginPageObject(driver);
+//		}
 			return new LoginPageObject(driver);
-		}
-			return loginPage;
 	}
 	public static RegisterPageObject getRegisterPage(WebDriver driver) {
-		if(registerPage == null) {
+//		if(registerPage == null) {
+//			return new RegisterPageObject(driver);
+//		}
 			return new RegisterPageObject(driver);
-		}
-			return registerPage;
 	}
 	public static MyAccountPagesObject getCustomerInforPage(WebDriver driver) {
-		if(customerInforPage == null) {
-			return new MyAccountPagesObject(driver);
-		}
-		return customerInforPage;
+//		if(customerInforPage == null) {
+//			return new MyAccountPagesObject(driver);
+//		}
+		return new MyAccountPagesObject(driver);
 	}
 	public static AddressesPageObject getAddressesPage(WebDriver driver) {
-		if(addressesPage == null) {
-			return new AddressesPageObject(driver);
-		}
-		return addressesPage;
+//		if(addressesPage == null) {
+//			return new AddressesPageObject(driver);
+//		}
+		return new AddressesPageObject(driver);
 	}
 	public static RewardPointsPageObject getRewardPointsPage(WebDriver driver) {
-		if(rewardPointsPage == null) {
-			return new RewardPointsPageObject(driver);
-		}
-		return rewardPointsPage;
+//		if(rewardPointsPage == null) {
+//			return new RewardPointsPageObject(driver);
+//		}
+		return new RewardPointsPageObject(driver);
 	}
 	public static OrdersPageObject getOrdersPage(WebDriver driver) {
-		if(ordersPage == null) {
-			return new OrdersPageObject(driver);
-		}
-		return ordersPage;
+//		if(ordersPage == null) {
+//			return new OrdersPageObject(driver);
+//		}
+		return new OrdersPageObject(driver);
 	}
 }

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite parallel="false" name="User Live Guru">
 
-	<parameter name="url" value="https://demo.nopcommerce.com/" />
+	<parameter name="url" value="http://live.demoguru99.com/" />
 	<test name="run on firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_05_Register_Login_PageObject_FactoryObject" />
+			<class name="com.liveguru.user.Level_10_DataTable" />
 		</classes>
 	</test> <!-- Test -->
-
-	<test name="run on chrome">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="com.nopcommerce.user.Level_05_Register_Login_PageObject_FactoryObject" />
-		</classes>
-	</test> <!-- Test -->
-
+	
 </suite> <!-- Suite -->

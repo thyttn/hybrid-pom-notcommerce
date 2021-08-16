@@ -1,5 +1,6 @@
 package commons;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -112,7 +113,7 @@ public  class BasePage {
 		return By.xpath(castRestparameter(locator, values));
 	}
 	public By getByXpath(String locator) {
-		return By.xpath(castRestparameter(locator));
+		return By.xpath(locator);
 	}
 	public WebElement getFindElement(WebDriver driver, String locator, String... values) {
 		return driver.findElement(getByXpath(castRestparameter(locator, values)));
@@ -135,7 +136,7 @@ public  class BasePage {
 		getFindElement(driver,locator ).clear();
 		getFindElement(driver,locator ).sendKeys(valueSenkey);
 	}
-	public void sendKeyToElement(WebDriver driver,String locator,String valueSenkey, String... expectedValues ) {
+	public void sendKeyToElement(WebDriver driver, String valueSenkey, String locator, String... expectedValues ) {
 		getFindElement(driver, castRestparameter(locator, expectedValues)).clear();
 		getFindElement(driver, castRestparameter(locator, expectedValues)).sendKeys(valueSenkey);
 	}
@@ -200,6 +201,9 @@ public  class BasePage {
 	
 	public int getFindElementSize(WebDriver driver,String locator) {
 		return getFindElements(driver, locator).size();
+	}
+	public int getFindElementSize(WebDriver driver,String locator, String...values) {
+		return getFindElements(driver, castRestparameter(locator, values)).size();
 	}
 	
 	public void checkToCheckBoxOrRadio(WebDriver driver,String locator) {
@@ -358,6 +362,10 @@ public  class BasePage {
 		}
 	}
 
+	public void waitForElementVisible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+	}
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator, values)));
@@ -386,6 +394,18 @@ public  class BasePage {
 	public String castRestparameter(String locator, String... values) {
 		locator = String.format(locator, (Object[]) values);
 		return locator;
+	}
+	
+	public void uploadMutipleFiles(WebDriver driver, String locator, String... fileNames) {
+		String fullFilePath = "";
+		String projectPath= System.getProperty("user.dir") + File.separator +"uploadFiles" + File.separator;
+		for (String fileName : fileNames) {
+			fullFilePath += projectPath + fileName + "\n";
+		}
+		fullFilePath = fullFilePath.trim();
+		System.out.println("location; " + fullFilePath );
+		getFindElement(driver, locator).sendKeys(fullFilePath);
+		sleepInSecond(2);
 	}
 	
 	private Actions action;

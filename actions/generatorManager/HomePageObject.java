@@ -3,7 +3,7 @@ package generatorManager;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageObjectLiveGuru.MyAccountPageObject;
+import pageObjectLiveGuru.UserRegisterPageObject;
 import pageUINopCommerce.HomePageUI;
 
 public class HomePageObject extends BasePage{

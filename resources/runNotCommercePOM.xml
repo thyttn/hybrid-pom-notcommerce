@@ -4,7 +4,7 @@
 	<test name="run on firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_08_Register_Login_Dynamic_Locator" />
+			<class name="com.nopcommerce.user.Level_15_Register_Login_Log_TestNG" />
 		</classes>
 	</test> <!-- Test -->
 

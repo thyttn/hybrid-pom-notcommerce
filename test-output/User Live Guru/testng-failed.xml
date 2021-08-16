@@ -5,33 +5,13 @@
   <test thread-count="5" name="run on firefox(failed)">
     <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.liveguru.user.Level_04_Login_Multiple_Browser_POM">
+      <class name="com.liveguru.user.Level_10_DataTable">
         <methods>
-          <include name="TC_01_EmptyEmailAndPassword"/>
-          <include name="TC_03_InvalidPassword"/>
-          <include name="TC_02_InvalidEmail"/>
-          <include name="TC_05_IncorrectPassword"/>
-          <include name="TC_06_CorrectEmailAndPassword"/>
           <include name="afterTest"/>
+          <include name="TC_02_Admin_Check_Register_Success"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- com.liveguru.user.Level_04_Login_Multiple_Browser_POM -->
+      </class> <!-- com.liveguru.user.Level_10_DataTable -->
     </classes>
   </test> <!-- run on firefox(failed) -->
-  <test thread-count="5" name="run on chrome(failed)">
-    <parameter name="browser" value="chrome"/>
-    <classes>
-      <class name="com.liveguru.user.Level_04_Login_Multiple_Browser_POM">
-        <methods>
-          <include name="TC_01_EmptyEmailAndPassword"/>
-          <include name="TC_03_InvalidPassword"/>
-          <include name="TC_02_InvalidEmail"/>
-          <include name="TC_05_IncorrectPassword"/>
-          <include name="TC_06_CorrectEmailAndPassword"/>
-          <include name="afterTest"/>
-          <include name="beforeTest"/>
-        </methods>
-      </class> <!-- com.liveguru.user.Level_04_Login_Multiple_Browser_POM -->
-    </classes>
-  </test> <!-- run on chrome(failed) -->
 </suite> <!-- Failed suite [User Live Guru] -->

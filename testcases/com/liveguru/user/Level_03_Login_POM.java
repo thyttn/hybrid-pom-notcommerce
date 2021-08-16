@@ -10,9 +10,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import commons.BasePage;
-import pageObjectLiveGuru.HomePageObject;
-import pageObjectLiveGuru.LoginPageObject;
-import pageObjectLiveGuru.MyAccountPageObject;
+import pageObjectLiveGuru.UserHomePageObject;
+import pageObjectLiveGuru.UserLoginPageObject;
+import pageObjectLiveGuru.UserRegisterPageObject;
 
 public class Level_03_Login_POM{
 	WebDriver driver;
@@ -28,9 +28,9 @@ public class Level_03_Login_POM{
 	@Test
 	public void TC_01_EmptyEmailAndPassword() {
 		driver.get("http://live.demoguru99.com/");
-		homePage = new HomePageObject(driver);
-		homePage.clickToMyaccountBottomLink();
-		loginPage = new LoginPageObject(driver);
+		homePage = new UserHomePageObject(driver);
+		homePage.openLoginPage();
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.enterEmailTxt("");
 		loginPage.enterPasswordTxt("");
 		loginPage.clickToLoginButton();
@@ -77,7 +77,7 @@ public class Level_03_Login_POM{
 		loginPage.enterEmailTxt("automation_13@gmail.com");
 		loginPage.enterPasswordTxt("123123");
 		loginPage.clickToLoginButton();
-		myAccountPage = new MyAccountPageObject(driver);
+		myAccountPage = new UserRegisterPageObject(driver);
 		
 		//Assert.assertEquals(myAccountPage.getSuccessLoginMessage(), "MY DASHBOARD");
 	}
@@ -93,7 +93,7 @@ public class Level_03_Login_POM{
 		return randomEmail;
 	}
 	
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	MyAccountPageObject myAccountPage;
+	UserHomePageObject homePage;
+	UserLoginPageObject loginPage;
+	UserRegisterPageObject myAccountPage;
 }

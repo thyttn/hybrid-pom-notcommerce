@@ -1,0 +1,47 @@
+[INFO ] [2021-08-12 07:31:39,750] Precondition - Step 01 - Open browser 'firefox'
+[INFO ] [2021-08-12 07:32:07,718] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 07:32:10,824] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 07:32:11,715] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 07:32:16,006] Register - Step 04 - verify success
+[INFO ] [2021-08-12 07:59:58,077] Precondition - Step 01 - Open browser 'firefox'
+[INFO ] [2021-08-12 08:00:12,124] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 08:00:14,960] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 08:00:15,752] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 08:00:20,032] Register - Step 04 - verify success
+[INFO ] [2021-08-12 08:00:20,122]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 08:12:16,439] Precondition - Step 01 - Open browser 'firefox'
+[INFO ] [2021-08-12 08:12:29,046] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 08:12:31,860] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 08:12:32,615] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 08:12:35,374] Register - Step 04 - verify success
+[INFO ] [2021-08-12 08:12:35,466]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 08:12:37,365] Precondition - Step 01 - Open browser 'chrome'
+[INFO ] [2021-08-12 08:12:48,195] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 08:12:51,071] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 08:12:52,072] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 08:12:56,477] Register - Step 04 - verify success
+[INFO ] [2021-08-12 08:12:56,551]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 08:27:40,025] Precondition - Step 01 - Open browser 'firefox'
+[INFO ] [2021-08-12 08:27:40,107] Precondition - Step 01 - Open browser 'chrome'
+[INFO ] [2021-08-12 08:27:49,996] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 08:27:52,952] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 08:27:54,508] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 08:27:55,030] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 08:27:57,888] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 08:27:58,588] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 08:27:58,801] Register - Step 04 - verify success
+[INFO ] [2021-08-12 08:27:58,875]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 08:28:01,365] Register - Step 04 - verify success
+[INFO ] [2021-08-12 08:28:01,458]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 09:27:16,453] Precondition - Step 01 - Open browser 'chrome'
+[INFO ] [2021-08-12 09:27:16,453] Precondition - Step 01 - Open browser 'firefox'
+[INFO ] [2021-08-12 09:27:27,614] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 09:27:30,615] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 09:27:31,844] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 09:27:36,670] Register - Step 04 - verify success
+[INFO ] [2021-08-12 09:27:36,749]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-12 09:27:43,400] Register - Step 01 - click to register link
+[INFO ] [2021-08-12 09:27:46,248] Register - Step 02 - enter infor
+[INFO ] [2021-08-12 09:27:47,196] Register - Step 03 - click to register button
+[INFO ] [2021-08-12 09:27:51,389] Register - Step 04 - verify success
+[INFO ] [2021-08-12 09:27:51,488]  -------------------------- PASSED -------------------------- 
