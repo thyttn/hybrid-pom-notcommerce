@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="tests" name="User NopCommerce" thread-count = '2'>
 	<listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
         <listener class-name="commons.MethodListener"/>
-        <listener class-name="extentV3Config.ExtentTestListener"/>
+        <listener class-name="allureConfig.AllureTestListener"/>
         <listener class-name="reportConfig.ReportNGListener"/>
 	</listeners>
 	
@@ -12,7 +13,7 @@
 	<test name="run on firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="takeScreenshot.Level_16_Register_Login_Screenshot_ExtentReportV2" />
+			<class name="com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport" />
 		</classes>
 	</test> <!-- Test -->	
 	

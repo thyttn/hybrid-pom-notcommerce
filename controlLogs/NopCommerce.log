@@ -45,3 +45,11 @@
 [INFO ] [2021-08-12 09:27:47,196] Register - Step 03 - click to register button
 [INFO ] [2021-08-12 09:27:51,389] Register - Step 04 - verify success
 [INFO ] [2021-08-12 09:27:51,488]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-18 14:14:55,068] ---------- START delete file in folder ----------
+[INFO ] [2021-08-18 14:14:55,083] ---------- END delete file in folder ----------
+[INFO ] [2021-08-19 13:55:31,663] ---------- START delete file in folder ----------
+[INFO ] [2021-08-19 13:55:31,689] ---------- END delete file in folder ----------
+[INFO ] [2021-08-19 15:09:59,559] ---------- START delete file in folder ----------
+[INFO ] [2021-08-19 15:09:59,563] ---------- END delete file in folder ----------
+[INFO ] [2021-08-19 15:10:44,025] ---------- START delete file in folder ----------
+[INFO ] [2021-08-19 15:10:44,027] ---------- END delete file in folder ----------
