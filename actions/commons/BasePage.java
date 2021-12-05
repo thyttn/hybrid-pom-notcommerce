@@ -1,25 +1,54 @@
 package commons;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObject.hrm.DashboardPageObject;
+import pageObject.hrm.LoginPageObject;
+import pageObject.hrm.MyInfoPageObject;
+import pageObject.hrm.PageGenerator;
+import pageUIs.hrm.CommonPageUI;
+import pageUIs.hrm.MyInfoPageUI;
 
+/**
+ * @author NGOC-THY
+ *
+ */
+/**
+ * @author NGOC-THY
+ *
+ */
+/**
+ * @author NGOC-THY
+ *
+ */
 public  class BasePage {
+	private Actions action;
+	private JavascriptExecutor jsExecutor;
+	private Select select;
+	private Alert alert;
+	private WebDriverWait explicitWait;
+	private int longTimeout = GlobalConstants.LONG_TIMEOUT;
+	
 	public static BasePage getBasePage() {
 		return new BasePage();
 	}
@@ -125,6 +154,21 @@ public  class BasePage {
 	public List<WebElement> getFindElements(WebDriver driver,String locator) {
 		return driver.findElements(getByXpath(locator));
 	}
+	
+	/** get all text value list from items list
+	 * @param driver
+	 * @param locator
+	 */
+	public ArrayList<String> getTextValueList(WebDriver driver,String locator) {
+		List<WebElement> locatorItemsList = driver.findElements(getByXpath(locator));
+		ArrayList<String> itemsList = new ArrayList<String>();
+		String item = "";
+		for (WebElement locatorItem : locatorItemsList) {
+			item = locatorItem.getText();
+			itemsList.add(item);
+		}
+		return itemsList;
+	}
 
 	public void clickToElement(WebDriver driver,String locator) {
 		getFindElement(driver, locator ).click();
@@ -136,13 +180,19 @@ public  class BasePage {
 		getFindElement(driver,locator ).clear();
 		getFindElement(driver,locator ).sendKeys(valueSenkey);
 	}
-	public void sendKeyToElement(WebDriver driver, String valueSenkey, String locator, String... expectedValues ) {
+	public void sendKeyToElement(WebDriver driver, String locator, String valueSenkey, String... expectedValues ) {
 		getFindElement(driver, castRestparameter(locator, expectedValues)).clear();
 		getFindElement(driver, castRestparameter(locator, expectedValues)).sendKeys(valueSenkey);
 	}
 	
 	public void selectItemInDropdown(WebDriver driver,String locator,String textValue, String...expectedValues ) {
+		//waitForElementClickable(driver, castRestparameter(locator, expectedValues));
 		select = new Select(getFindElement(driver, castRestparameter(locator, expectedValues)));
+		select.selectByVisibleText(textValue);
+	}
+	
+	public void selectItemInDropdown(WebDriver driver,String locator,String textValue) {
+		select = new Select(getFindElement(driver, locator));
 		select.selectByVisibleText(textValue);
 	}
 	
@@ -187,9 +237,17 @@ public  class BasePage {
 	public String getAttributeValue(WebDriver driver,String locator, String attributeName, String...expectedValues) {
 		return getFindElement(driver, castRestparameter(locator, expectedValues)).getAttribute(attributeName);
 	}
+	public String getAttributeValue(WebDriver driver,String locator, String attributeName) {
+		return getFindElement(driver, locator).getAttribute(attributeName);
+	}
 	public String getTextValue(WebDriver driver,String locator, String...expectedVales) {
 		return getFindElement(driver, castRestparameter(locator, expectedVales)).getText();
 	}
+	public String getTextValue(WebDriver driver,String locator) {
+		return getFindElement(driver,locator).getText();
+	}
+
+
 	
 	public String getCssValue(WebDriver driver,String locator, String attributeName) {
 		return getFindElement(driver, locator).getCssValue(locator);
@@ -230,6 +288,9 @@ public  class BasePage {
 	public boolean isElementEnable(WebDriver driver,String locator) {
 		return getFindElement(driver, locator).isEnabled();
 	}
+	public boolean isElementEnable(WebDriver driver,String locator, String...values) {
+		return getFindElement(driver, castRestparameter(locator, values)).isEnabled();
+	}
 
 	public void switchToIframe(WebDriver driver,String locator) {
 		driver.switchTo().frame(getFindElement(driver, locator));
@@ -246,6 +307,10 @@ public  class BasePage {
 	public void hoverMouseToElement(WebDriver driver,String locator) {
 		action = new Actions(driver);
 		action.moveToElement(getFindElement(driver, locator)).perform();
+	}
+	public void hoverMouseToElement(WebDriver driver,String locator,String...values) {
+		action = new Actions(driver);
+		action.moveToElement(getFindElement(driver, castRestparameter(locator, values))).perform();
 	}
 	public void rightClickToElement(WebDriver driver,String locator) {
 		action = new Actions(driver);
@@ -301,6 +366,14 @@ public  class BasePage {
 		sleepInSecond(1);
 		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
+	public void highlightElement(WebDriver driver, String locator, String... values) {
+		jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = getFindElement(driver, castRestparameter(locator, values));
+		String originalStyle = element.getAttribute("style");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 2px solid red; border-style: dashed;");
+		sleepInSecond(1);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+	}
 
 	public void clickToElementByJS(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
@@ -322,7 +395,19 @@ public  class BasePage {
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getFindElement(driver, locator));
 	}
 
-	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+	public boolean isJQueryAJaxLoadedSuccess(WebDriver driver){
+		explicitWait = new WebDriverWait(driver, longTimeout);
+		jsExecutor = (JavascriptExecutor) driver;
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return (Boolean) jsExecutor.executeScript("return (window.jQuery != null) && (jQuery.active == 0);");
+			}
+		};
+		return explicitWait.until(jQueryLoad);
+	}
+	
+ 	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		jsExecutor = (JavascriptExecutor) driver;
 
@@ -367,10 +452,12 @@ public  class BasePage {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
 	}
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
+		highlightElement(driver, locator, values);
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator, values)));
 	}
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		highlightElement(driver, locator, values);
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator, values)));
 	}
@@ -408,10 +495,205 @@ public  class BasePage {
 		sleepInSecond(2);
 	}
 	
-	private Actions action;
-	private JavascriptExecutor jsExecutor;
-	private Select select;
-	private Alert alert;
-	private WebDriverWait explicitWait;
-	private long longTimeout;
+	public Set<Cookie> getAllCookies(WebDriver driver) {
+		return driver.manage().getCookies();
+	}
+	
+	public void setAllCookies(WebDriver driver,Set<Cookie> allCookies ) {
+		for(Cookie cookie : allCookies) {
+			driver.manage().addCookie(cookie);
+		}
+	}
+	
+
+
+	/**Open main menu link
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param mainMenuName
+	 */
+	public void openMainMenu(WebDriver driver, String mainMenuName) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		
+		isJQueryAJaxLoadedSuccess(driver);
+	}
+	/** Open sub menu link
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param mainMenuName
+	 * @param subMenuName
+	 */
+	public void openSubMenu(WebDriver driver, String mainMenuName, String subMenuName) {
+		waitForElementVisible(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		isJQueryAJaxLoadedSuccess(driver);
+		
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_MENU_PAGE, subMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, subMenuName);
+		isJQueryAJaxLoadedSuccess(driver);
+	}
+	
+	/** Open third sub menu link
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param mainMenuName
+	 * @param subMenuName
+	 * @param thirdMenuName
+	 */
+	public void openThirdMenu(WebDriver driver, String mainMenuName, String subMenuName, String thirdMenuName) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, mainMenuName);
+		isJQueryAJaxLoadedSuccess(driver);
+		
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_MENU_PAGE, subMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, subMenuName);
+		
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_MENU_PAGE, thirdMenuName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_MENU_PAGE, thirdMenuName);
+		isJQueryAJaxLoadedSuccess(driver);
+	}
+	
+	/** enter to textbox by ID
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param textboxId
+	 * @param valueText
+	 */
+	public void enterToTextboxById(WebDriver driver, String valueText, String textboxId) {
+		waitForElementVisible(driver, CommonPageUI.DYNAMIC_TEXTBOX_ID, textboxId);
+		sendKeyToElement(driver, CommonPageUI.DYNAMIC_TEXTBOX_ID, valueText, textboxId);
+	}
+	
+	/** enter value to date field by ID
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param valueText
+	 * @param dateFieldId
+	 */
+	public void enterToDateFieldById(WebDriver driver, String valueText, String dateFieldId) {
+		waitForElementVisible(driver, CommonPageUI.DYNAMIC_DATE_FIELD_ID, dateFieldId);
+		sendKeyToElement(driver, CommonPageUI.DYNAMIC_DATE_FIELD_ID, valueText, dateFieldId);
+		pressKeyToElement(driver, CommonPageUI.DYNAMIC_DATE_FIELD_ID, Keys.ENTER, dateFieldId);
+	}
+	
+	/** Click to button by ID
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param buttonId
+	 */
+	public void clickToButtonById(WebDriver driver, String buttonId) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_BUTTON, buttonId);
+		clickToElement(driver, CommonPageUI.DYNAMIC_BUTTON, buttonId);
+	}
+	
+	/** get value of textbox by ID
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param textboxId
+	 */
+	public String getValueOfTextboxById(WebDriver driver, String textboxId) {
+		waitForElementVisible(driver, CommonPageUI.DYNAMIC_TEXTBOX_ID, textboxId);
+		return getAttributeValue(driver, CommonPageUI.DYNAMIC_TEXTBOX_ID, "value", textboxId);
+	}
+	
+	/** select value in dropdown list by id
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param dropdownId
+	 * @param textValue
+	 */
+	public void selectValueInDropdownById(WebDriver driver, String dropdownId, String textValue) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_DROPDOWN, dropdownId);
+		selectItemInDropdown(driver, CommonPageUI.DYNAMIC_DROPDOWN, textValue, dropdownId);
+	}
+	
+	/** verify result search by table id and column name
+	 * @author NGOC-THY
+	 * @param driver
+	 * @param tableId
+	 * @param columnName
+	 */
+	public String verifyResultSearchByTableIdAndColumnName(WebDriver driver, String tableId, String columnName) {
+		int columnIndex = getFindElementSize(driver, CommonPageUI.COLUMN_INDEX_BY_COLUMN_NAME , tableId , columnName) +1;
+		return getTextValue(driver, CommonPageUI.RESULT_SEARCH_BY_TABLE_ID_AND_COLUMN_INDEX, tableId , String.valueOf(columnIndex));
+	}		
+	
+	/** Logout HRM system
+	 * @param driver
+	 */
+	public LoginPageObject logoutHRM(WebDriver driver) {
+		waitForElementClickable(driver, CommonPageUI.WELCOME_ICON);
+		clickToElement(driver, CommonPageUI.WELCOME_ICON);
+		
+		waitForElementClickable(driver, CommonPageUI.LOGOUT_LINK);
+		clickToElement(driver, CommonPageUI.LOGOUT_LINK);
+		return PageGenerator.getLoginPage(driver);
+	}
+	
+	/** Login HRM system
+	 * @param driver
+	 * @param userName
+	 * @param password
+	 */
+	public DashboardPageObject loginSystem(WebDriver driver,String userName, String password) {
+		waitForElementVisible(driver, CommonPageUI.USERNAME);
+		sendKeyToElement(driver, CommonPageUI.USERNAME, userName);
+		sendKeyToElement(driver, CommonPageUI.PASSWORD, password);
+		
+		clickToElement(driver, CommonPageUI.LOGIN_BUTTON);
+		return PageGenerator.getDashboardPage(driver);
+	}
+	
+	/** Upload avatar image
+	 * @param driver
+	 * @param uploadBoxId
+	 * @param pathToFile
+	 */
+	public void uploadFileToHRM(WebDriver driver, String uploadBoxId, String pathToFile) {
+		waitForElementVisible(driver, CommonPageUI.UPLOAD_FILE, uploadBoxId );
+		getFindElement(driver, CommonPageUI.UPLOAD_FILE, uploadBoxId).sendKeys(pathToFile);
+	}
+	
+	/** verify success message is displayed
+	 * @param driver
+	 * @param successMessage
+	 */
+	public boolean isSuccessMessageDisplayed(WebDriver driver, String successMessage) {
+		return isElementDisplay(driver, CommonPageUI.SUCCESS_MESSAGE, successMessage );
+	}
+	
+	/** Open Tab in left side by tab name
+	 * @param driver
+	 * @param tabName
+	 */
+	public MyInfoPageObject openTabNameInMyInforPage(WebDriver driver, String tabName) {
+		waitForElementClickable(driver, CommonPageUI.TAB_NAME_IN_PERSONAL_PAGE, tabName);
+		clickToElement(driver, CommonPageUI.TAB_NAME_IN_PERSONAL_PAGE, tabName);
+		return PageGenerator.getMyInfoPage(driver);
+	}
+	
+	/** verify if a field is enable
+	 * @param driver
+	 * @param fieldId
+	 */
+	public boolean isEnableField(WebDriver driver, String fieldId) {
+		return isElementEnable(driver, CommonPageUI.ANY_FIELD, fieldId );
+	}
+
+	/** Get attribute value by Id of field
+	 * @param driver
+	 * @param attributeName
+	 * @param fieldId
+	 */
+	public String getAttributeValueById(WebDriver driver, String attributeName, String fieldId) {
+		waitForElementVisible(driver, CommonPageUI.ANY_FIELD, fieldId);
+		return getFindElement(driver, CommonPageUI.ANY_FIELD, fieldId).getAttribute(attributeName);
+	}
+	
+	public String getSelectedItemValueById(WebDriver driver, String fieldId) {
+		waitForElementVisible(driver, CommonPageUI.ANY_FIELD, fieldId);
+		select = new Select(getFindElement(driver, CommonPageUI.ANY_FIELD, fieldId));
+		return select.getFirstSelectedOption().getText();
+	}
 }

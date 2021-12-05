@@ -1,65 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="3" passed="3" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
-    <line>
-      <![CDATA[[INFO ] [2021-08-19 13:55:31,663] ---------- START delete file in folder ----------
-<br>]]>
-    </line>
-    <line>
-      <![CDATA[[INFO ] [2021-08-19 13:55:31,689] ---------- END delete file in folder ----------
-<br>]]>
-    </line>
   </reporter-output>
-  <suite started-at="2021-08-19T06:55:31Z" name="User NopCommerce" finished-at="2021-08-19T06:56:34Z" duration-ms="62848">
+  <suite name="User Live Guru" duration-ms="16938" started-at="2021-12-04T02:09:49Z" finished-at="2021-12-04T02:10:06Z">
     <groups>
     </groups>
-    <test started-at="2021-08-19T06:55:31Z" name="run on firefox" finished-at="2021-08-19T06:56:34Z" duration-ms="62848">
-      <class name="com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport">
-        <test-method is-config="true" signature="deleteAllFilesInReportNGScreenshot()[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:55:31Z" name="deleteAllFilesInReportNGScreenshot" finished-at="2021-08-19T13:55:31Z" duration-ms="50" status="PASS">
+    <test name="run on firefox" duration-ms="16938" started-at="2021-12-04T02:09:49Z" finished-at="2021-12-04T02:10:06Z">
+      <class name="com.hrm.employee.Level_23_Multi_Enviroment">
+        <test-method status="PASS" signature="deleteAllFilesInReportNGScreenshot()[pri:0, instance:com.hrm.employee.Level_23_Multi_Enviroment@be64738]" name="deleteAllFilesInReportNGScreenshot" is-config="true" duration-ms="22" started-at="2021-12-04T09:09:49Z" finished-at="2021-12-04T09:09:49Z">
           <reporter-output>
-            <line>
-              <![CDATA[[INFO ] [2021-08-19 13:55:31,663] ---------- START delete file in folder ----------
-<br>]]>
-            </line>
-            <line>
-              <![CDATA[[INFO ] [2021-08-19 13:55:31,689] ---------- END delete file in folder ----------
-<br>]]>
-            </line>
           </reporter-output>
         </test-method> <!-- deleteAllFilesInReportNGScreenshot -->
-        <test-method is-config="true" signature="beforeTest(java.lang.String, java.lang.String)[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:55:31Z" name="beforeTest" finished-at="2021-08-19T13:56:09Z" depends-on-methods="commons.BaseTest.deleteAllFilesInReportNGScreenshot" duration-ms="37377" status="PASS">
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:com.hrm.employee.Level_23_Multi_Enviroment@be64738]" name="beforeTest" is-config="true" duration-ms="13751" started-at="2021-12-04T09:09:49Z" finished-at="2021-12-04T09:10:02Z">
           <params>
             <param index="0">
               <value>
                 <![CDATA[firefox]]>
               </value>
             </param>
-            <param index="1">
-              <value>
-                <![CDATA[https://demo.nopcommerce.com/]]>
-              </value>
-            </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="TC_01_Register()[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:56:09Z" name="TC_01_Register" finished-at="2021-08-19T13:56:19Z" duration-ms="10535" status="PASS">
+        <test-method status="PASS" signature="Employee_01_Add_New_Employee()[pri:0, instance:com.hrm.employee.Level_23_Multi_Enviroment@be64738]" name="Employee_01_Add_New_Employee" duration-ms="159" started-at="2021-12-04T09:10:02Z" finished-at="2021-12-04T09:10:03Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_01_Register -->
-        <test-method signature="TC_02_Login()[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:56:19Z" name="TC_02_Login" finished-at="2021-08-19T13:56:25Z" duration-ms="5368" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC_02_Login -->
-        <test-method signature="TC_03_MyAccount()[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:56:25Z" name="TC_03_MyAccount" finished-at="2021-08-19T13:56:31Z" duration-ms="6324" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC_03_MyAccount -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport@5ce8d869]" started-at="2021-08-19T13:56:31Z" name="afterTest" finished-at="2021-08-19T13:56:34Z" duration-ms="3009" status="PASS">
+        </test-method> <!-- Employee_01_Add_New_Employee -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.hrm.employee.Level_23_Multi_Enviroment@be64738]" name="afterTest" is-config="true" duration-ms="2753" started-at="2021-12-04T09:10:03Z" finished-at="2021-12-04T09:10:06Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-      </class> <!-- com.nopcommerce.user.Level_17_Register_Login_Screenshot_AllureReport -->
+        <test-method status="PASS" signature="closeExecuteBrowser()[pri:0, instance:com.hrm.employee.Level_23_Multi_Enviroment@be64738]" name="closeExecuteBrowser" is-config="true" duration-ms="0" started-at="2021-12-04T09:10:06Z" finished-at="2021-12-04T09:10:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeExecuteBrowser -->
+      </class> <!-- com.hrm.employee.Level_23_Multi_Enviroment -->
     </test> <!-- run on firefox -->
-  </suite> <!-- User NopCommerce -->
+  </suite> <!-- User Live Guru -->
 </testng-results>

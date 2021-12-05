@@ -1,6 +1,9 @@
 package commons;
 
+import org.testng.AssertJUnit;
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -8,9 +11,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -28,6 +36,11 @@ public class BaseTest {
 	public enum BROWSER{
 		CHROME,FIREFOX,EDGE,IE;
 	}
+	
+	public enum ENVIROMENT{
+		DEV,TEST,STAGING,PRODUCTION;
+	}
+	
 	protected WebDriver multiBrowser(String browserName) {
 		BROWSER browser  = BROWSER.valueOf(browserName.toUpperCase());
 		switch (browser) {
@@ -47,18 +60,69 @@ public class BaseTest {
 		return driver;
 	}
 	
-	protected WebDriver multiBrowser(String browserName, String url) {
+	protected WebDriver multiBrowser(String browserName, String urlApp) {
+
 		BROWSER browser  = BROWSER.valueOf(browserName.toUpperCase());
 		switch (browser) {
 		case FIREFOX: 
 			WebDriverManager.firefoxdriver().setup();
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, GlobalConstants.PROJECT_PATH + "\\consoleLog\\ConsoleFirefoxLog.txt");
 			driver = new FirefoxDriver();
+			break;
+		case CHROME:
+			WebDriverManager.chromedriver().setup();
+			System.setProperty("Webdriver.chrome.args","--disable-logging");
+			System.setProperty("Webdriver.chrome.silentOutput","true");
+			driver = new ChromeDriver();
+			break;
+		default:
+			return (WebDriver) new RuntimeException("Please enter correct browser!");
+		}
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		//driver.get(getEnviroment(urlApp));
+		driver.get(urlApp);
+		return driver;
+	}
+	
+	private String getEnviroment(String enviromentName) {
+		String urlEnv = null;
+		ENVIROMENT enviroment = ENVIROMENT.valueOf(enviromentName.toUpperCase());
+		
+		if(enviroment.equals(ENVIROMENT.DEV)) {
+			urlEnv = "https://demo.guru99.com/v1";
+			
+		}else if(enviroment.equals(ENVIROMENT.TEST)) {
+			urlEnv = "https://demo.guru99.com/v2";
+			
+		}else if(enviroment.equals(ENVIROMENT.STAGING)) {
+			urlEnv = "https://demo.guru99.com/v3";
+			
+		}else if(enviroment.equals(ENVIROMENT.PRODUCTION)) {
+			urlEnv = "https://demo.guru99.com/v4";
+			
+		}
+		System.out.println("Enviroment url" + urlEnv);
+		return urlEnv;
+	}
+	
+	protected WebDriver multiBrowserHeadless(String browserName, String url) {
+		BROWSER browser  = BROWSER.valueOf(browserName.toUpperCase());
+		switch (browser) {
+		case FIREFOX: 
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.setHeadless(true);
+			driver = new FirefoxDriver(firefoxOptions);
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			driver.get(url);
 			break;
 		case CHROME:
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("window-size=1366x768");
+			driver = new ChromeDriver(chromeOptions);
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			driver.get(url);
 			break;
@@ -81,7 +145,7 @@ public class BaseTest {
 			} else {
 				log.info(" -------------------------- FAILED -------------------------- ");
 			}
-			Assert.assertTrue(condition);
+			AssertJUnit.assertTrue(condition);
 		} catch (Throwable e) {
 			pass = false;
 
@@ -104,7 +168,7 @@ public class BaseTest {
 			} else {
 				log.info(" -------------------------- FAILED -------------------------- ");
 			}
-			Assert.assertFalse(condition);
+			AssertJUnit.assertFalse(condition);
 		} catch (Throwable e) {
 			pass = false;
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
@@ -120,7 +184,7 @@ public class BaseTest {
 	private boolean checkEquals(Object actual, Object expected) {
 		boolean pass = true;
 		try {
-			Assert.assertEquals(actual, expected);
+			AssertJUnit.assertEquals(actual, expected);
 			log.info(" -------------------------- PASSED -------------------------- ");
 		} catch (Throwable e) {
 			pass = false;
@@ -159,4 +223,78 @@ public class BaseTest {
 		log.info("---------- END delete file in folder ----------");
 	}
 
+	protected  void closeBrowserAndDriver() {
+		String cmd = "";
+		try {
+			//get name os va convert ra chu thuong
+			
+			String osName = System.getProperty("os.name").toLowerCase();
+			log.info("OS name is " + osName);
+			System.out.println("OS name is " + osName);
+			
+			//Quit driver executable file in Task Manager
+			if(driver.toString().contains("chrome")) {
+				if(osName.contains("mac")) {
+					cmd = "pkill chromedriver";
+				}else if(osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
+				}
+			}else if(driver.toString().contains("firefox")) {
+				if(osName.contains("mac")) {
+					cmd = "pkill geckodriver";
+				}else if(osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
+				}
+			
+			}else if(driver.toString().contains("internetexplorer")) {
+				if (osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
+				}
+			} else if (driver.toString().toLowerCase().contains("edge")) {
+				if (osName.contains("mac")) {
+					cmd = "pkill msedgedriver";
+				} else if (osName.contains("windows")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
+				}
+			}
+			
+			System.out.println("driver instance: " + driver.toString());
+			// Quit browser
+			if(driver!= null) {
+				driver.manage().deleteAllCookies();
+				driver.quit();
+				System.out.println("close browser");
+			}
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		} finally {
+			try {
+				Process process= Runtime.getRuntime().exec(cmd);
+				process.waitFor();
+				System.out.println("run commandline");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+				
+			log.info("---------- QUIT BROWSER SUCCESS ----------");
+		}
+	}
+	
+	protected void showBrowserConsoleLog(WebDriver driver) {
+		if(driver.toString().contains("chrome")) {
+			LogEntries logs = driver.manage().logs().get("browser");
+			List<LogEntry> logList = logs.getAll();
+			for(LogEntry logging : logList) {
+				System.out.println("---------" + logging.getLevel().toString() + "---------\n" + logging.getMessage());
+			}
+		} 
+	}
+
+	
+	@AfterSuite(alwaysRun = true)
+	public void closeExecuteBrowser() {
+		System.out.println("Run aftersuite");
+	}
+	
 }

@@ -1,0 +1,13 @@
+1638583789847	geckodriver	INFO	Listening on 127.0.0.1:13891
+1638583790724	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\NGOC-THY\\AppData\\Local\\Temp\\rust_mozprofileOuOfly"
+1638583791312	Marionette	INFO	Marionette enabled
+console.error: Policies.jsm: 
+  Download failed - ERROR_NETWORK_FAILURE - file:///c:/Program%20Files/akaFocusAgent/BrowserExt/firefox/fpt_aka_focus_agent_extension-1.0-an+fx.xpi
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1638583798135	Marionette	INFO	Listening on port 49402
+1638583798353	Marionette	WARN	TLS certificate errors will be ignored for this session
+1638583803383	Marionette	INFO	Stopped listening on port 49402
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 691: TypeError: this.tablesData[table] is undefined
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

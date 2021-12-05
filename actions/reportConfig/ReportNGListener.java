@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -53,17 +54,21 @@ public class ReportNGListener implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		System.out.println("---------- " + result.getName() + " FAILED test ----------");
-		System.setProperty("org.uncommons.reportng.escape-output", "false");
+		try {
+			System.out.println("---------- " + result.getName() + " FAILED test ----------");
+			System.setProperty("org.uncommons.reportng.escape-output", "false");
 
-		Object testClass = result.getInstance();
-		WebDriver driver = ((BaseTest) testClass).getDriver();
+			Object testClass = result.getInstance();
+			WebDriver driver = ((BaseTest) testClass).getDriver();
 
-		String screenshotPath = captureScreenshot(driver, result.getName());
-		Reporter.getCurrentTestResult();
-		Reporter.log("<br><a target=\"_blank\" href=\"file:///" + screenshotPath + "\">" + "<img src=\"file:///"
-				+ screenshotPath + "\" " + "height='100' width='150'/> " + "</a></br>");
-		Reporter.setCurrentTestResult(null);
+			String screenshotPath = captureScreenshot(driver, result.getName());
+			Reporter.getCurrentTestResult();
+			Reporter.log("<br><a target=\"_blank\" href=\"file:///" + screenshotPath + "\">" + "<img src=\"file:///"
+					+ screenshotPath + "\" " + "height='100' width='150'/> " + "</a></br>");
+			Reporter.setCurrentTestResult(null);
+		} catch (NoSuchSessionException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String captureScreenshot(WebDriver driver, String screenshotName) {
@@ -74,7 +79,7 @@ public class ReportNGListener implements ITestListener {
 			String screenPath = System.getProperty("user.dir") + "\\ReportNGScreenShots\\" + screenshotName + "_" + formater.format(calendar.getTime()) + ".png";
 			FileUtils.copyFile(source, new File(screenPath));
 			return screenPath;
-		} catch (IOException e) {
+		} catch (NoSuchSessionException|IOException e) {
 			System.out.println("Exception while taking screenshot: " + e.getMessage());
 			return e.getMessage();
 		}

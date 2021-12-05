@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="false" name="User NopCommerce">
+<suite parallel="tests" name="User NopCommerce">
+
+	<listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="commons.MethodListener"/>
+        <listener class-name="reportConfig.ExtentReportListenerV2"/>
+        <listener class-name="reportConfig.ReportNGListener"/>
+	</listeners>
   <parameter name="url" value="https://demo.nopcommerce.com/" />
 	<test name="run on firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.user.Level_15_Register_Login_Log_TestNG" />
+			<class name="testNG.CloseBrowserAndDriver" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="run on chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="testNG.CloseBrowserAndDriver" />
 		</classes>
 	</test> <!-- Test -->
 
